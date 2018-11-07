@@ -1,4 +1,5 @@
 .large-hero {
+    border-bottom: 10px solid $mainBlue;
     position: relative;
 
     /* .large-hero__text-content {
@@ -9,6 +10,10 @@
         width: 100%;
         text-align: center;
     } */
+
+    &__image {
+        display: block; /* da je inline, onda se napravi neki gap ispod, tj browser ocekuje kao neki text pa ostavi prostor za njega (tipa za slova 'g' ili 'y' gde su nekako malo duza), a kad stavimo block, kazemo browseru da tretira sliku skoro kao div, pa ga poravna savrseno, bez nekih razmaka ili nekog prostora za slova */
+    }
 
     &__text-content {
         position: absolute;
@@ -24,17 +29,9 @@
         font-weight: 300;
         color: $mainBlue;
         margin: 0;
-        font-size: 1.1rem;
+        font-size: 2rem;
 
         @mixin atSmall {
-            font-size: 2rem;
-        }
-
-        @mixin atMedium {
-            font-size: 3.2rem;
-        }
-
-        @mixin atLarge {
             font-size: 4.8rem;
         }
 
@@ -43,7 +40,7 @@
     &__subtitle {
         font-weight: 300;
         color: $mainBlue;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         margin: 0;
 
         @mixin atSmall {
@@ -53,12 +50,16 @@
 
     &__description {
         color: #fff;
-        font-size: 1.875rem; /* root font-size * 1.875 = 16*1.875 = 30px */
+        font-size: 1.1rem; /* root font-size * 1.875 = 16*1.875 = 30px */
         font-weight: 100;
         text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);
         max-width: 30rem; /* 480px:16 = 30rem */
         margin-left: auto;
         margin-right: auto;
+
+        @mixin atSmall {
+            font-size: 1.875rem;
+        }
     }
 
     

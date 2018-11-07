@@ -463,6 +463,7 @@ img {
 /* bitno je gde importujemo sad ovo */
 
 .large-hero {
+    border-bottom: 10px solid #2f5572;
     position: relative;
 
     
@@ -476,6 +477,10 @@ img {
         width: 100%;
         text-align: center;
     } */
+
+.large-hero__image {
+        display: block; /* da je inline, onda se napravi neki gap ispod, tj browser ocekuje kao neki text pa ostavi prostor za njega (tipa za slova 'g' ili 'y' gde su nekako malo duza), a kad stavimo block, kazemo browseru da tretira sliku skoro kao div, pa ga poravna savrseno, bez nekih razmaka ili nekog prostora za slova */
+    }
 
 .large-hero__text-content {
         position: absolute;
@@ -492,23 +497,11 @@ img {
         font-weight: 300;
         color: #2f5572;
         margin: 0;
-        font-size: 1.1rem;
+        font-size: 2rem;
 
     }
 
 @media (min-width: 530px) {
-
-.large-hero__title {
-            font-size: 2rem
-
-    }
-    }
-
-@media (min-width: 800px) {
-        @mixin-conent;
-    }
-
-@media (min-width: 1200px) {
 
 .large-hero__title {
             font-size: 4.8rem
@@ -519,7 +512,7 @@ img {
 .large-hero__subtitle {
         font-weight: 300;
         color: #2f5572;
-        font-size: 1.1rem;
+        font-size: 1.5rem;
         margin: 0;
     }
 
@@ -532,12 +525,19 @@ img {
 
 .large-hero__description {
         color: #fff;
-        font-size: 1.875rem; /* root font-size * 1.875 = 16*1.875 = 30px */
+        font-size: 1.1rem; /* root font-size * 1.875 = 16*1.875 = 30px */
         font-weight: 100;
         text-shadow: 2px 2px 0 rgba(0, 0, 0, .1);
         max-width: 30rem; /* 480px:16 = 30rem */
         margin-left: auto;
         margin-right: auto;
+    }
+
+@media (min-width: 530px) {
+
+.large-hero__description {
+            font-size: 1.875rem
+    }
     }
 
 .btn {
@@ -553,6 +553,95 @@ img {
     }
 
 .btn--large {
-        font-size: 1.25rem;
         padding: 1.1rem 1.9rem;
+    }
+
+@media (min-width: 530px) {
+
+.btn--large {
+            font-size: 1.25rem
+    }
+    }
+
+.wrapper {
+    padding-left: 18px;
+    padding-right: 18px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.wrapper--medium {
+        max-width: 976px;
+    }
+
+.wrapper .wrapper {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+.page-section {
+    padding: 1.2rem;
+}
+
+@media (min-width: 800px) {
+        @mixin-conent;
+    }
+
+.page-section__blue {
+        background-color: #2f5572;
+        color: #fff;
+    }
+
+.headline {
+    font-weight: 300;
+    font-size: 1.9rem;
+    color: #2f5572;
+
+}
+
+@media (min-width: 530px) {
+
+.headline {
+        font-size: 2.875rem /* 46:16 = 2.875rem */
+
+}
+    }
+
+.headline--centered {
+        text-align: center;
+    }
+
+.headline--orange {
+        color: #d59541;
+    }
+
+.headline--small {
+        font-size: 1.2rem;
+    }
+
+@media (min-width: 530px) {
+
+.headline--small {
+            font-size: 1.875rem
+    }
+    }
+
+.headline--narrow {
+        max-width: 500px;
+        margin-left: auto;
+        margin-right: auto;
+
+    }
+
+.headline--light {
+        font-weight: 100;
+    }
+
+.headline--b-margin-small {
+        margin-bottom: .5em; /*  */ 
+    }
+
+.headline--b-margin-large {
+        margin-bottom: 1.6em; /*  */ 
     }
