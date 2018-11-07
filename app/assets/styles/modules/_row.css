@@ -17,8 +17,17 @@
         padding-right: 65px;
         /* box-sizing: border-box; bez ovoga border-box ovaj section se raspadao, jer 33.33%+66.66% + ovih 65px je preko 100%, i posto je ova linija koda znacajna u globalnom smislu, jer se svugde moze primeniti, premesticemo je u _global.css */
     } 
+
+    &__b-margin-until-medium {
+        margin-bottom: 1rem;
+    }
     
     @mixin atMedium {
+
+        &__b-margin-until-medium {
+            margin-bottom: 0;
+        }
+
         &__medium-4 {
             float: left;
             width: 33.33%;

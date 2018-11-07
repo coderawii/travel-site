@@ -1,0 +1,15 @@
+.generic-content-container {
+
+    p {
+        line-height: 1.65;
+        margin: 1.8rem 0;
+
+        @mixin atSmall {
+            font-size: 1.125rem; /* 18/16 = 1.125rem */
+        }
+    }
+
+    p a {
+        font-weight: 700; /* a boja a linka nije ovde data vec u _global.css da bi bio globalan, debljina nije, jer ne zelimo da linkovi svugde budu boldovani */
+    }
+}
