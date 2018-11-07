@@ -1,0 +1,32 @@
+.testimonial {
+    background-color: rgba(255, 255, 255, .8);
+    padding: 0 1.8125rem 1px 1.8125rem; /* 29/16 = 1.8125rem */
+
+    &__photo {
+        /* background: red; */
+        border-radius: 80px;
+        overflow: hidden;
+        width: 160px;
+        height: 160px;
+        margin: 0 auto -80px auto;
+        position: relative;
+        top:-80px; /* da bi digli sliku gore iznad providnog belog diva tj iznad .testimonial (-80px je jer je pola od visine slike, tj 160/2 = 80px), a potom posto je text ispod slike mng imao prostora od slike do texta, gore smo dodali za margin bottom da bude -80px, i tekst se podigao gore za 80px */
+        border: 6px solid rgba(255, 255, 255, .8);
+    }
+
+    &__title {
+        color: $mainBlue;
+        text-align: center;
+        font-size: 1.5rem; /* 24/16 = 1.5rem */
+        font-weight: 500;
+        margin: 0;
+    }
+
+    &__subtitle {
+        color: $mainOrange;
+        text-align: center;
+        font-weight: 400;
+        font-size: 0.9375rem; /* 15/16 = 0.9375rem */
+        margin: .25rem 0 1rem 0;
+    }
+}
