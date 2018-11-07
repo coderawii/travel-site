@@ -587,6 +587,19 @@ a {
         max-width: 976px;
     }
 
+.wrapper--no-padding-until-medium {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+@media (min-width: 800px) {
+
+.wrapper--no-padding-until-medium {
+            padding-left: 18px;
+            padding-right: 18px
+    }
+    }
+
 .wrapper .wrapper {
         padding-left: 0;
         padding-right: 0;
@@ -613,14 +626,32 @@ a {
 }
     }
 
+.page-section--no-b-padding-until-medium {
+        padding-bottom: 0;
+    }
+
+@media (min-width: 800px) {
+
+.page-section--no-b-padding-until-medium {
+            padding-bottom: 4.5rem
+    }
+    }
+
 .page-section__blue {
         background-color: #2f5572;
         color: #fff;
     }
 
 .page-section--testimonials {
-        background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
-        background-size: cover;
+        background-color: #e0e6ef;
+    }
+
+@media (min-width: 800px) {
+
+.page-section--testimonials {
+            background: url('/assets/images/testimonials-bg.jpg') top center no-repeat;
+            background-size: cover
+    }
     }
 
 .headline {
@@ -694,12 +725,20 @@ a {
         /* ovo dodaje fejk sadrzaj nakon svog contenta u glavnom .row divu. Jer zbog floatova on se istripuje da je prazan, pa ako stavimo boloio koju boju cisto da vidimo koliki je ovaj glavni .row div, necemo ga ni videti, jer tripuje da je prazan, zato ovo stavljamo i ovo cemo da premestimo u mixins da bi mogli posle ponovo upotrebiti */
     }
 
+.row--t-padding {
+        padding-top: 80px;
+    }
+
 .row--gutters {
         margin-right: -65px;
     }
 
 .row--gutters-large {
         margin-right: -100px;
+    }
+
+.row--gutters-small {
+        margin-right: -45px;
     }
 
 .row--gutters > div { /* ali ne zelimo da ovo primenimo na roditelja tj glavnom .row vec na njegovu decu, otud ovo > div */
@@ -709,6 +748,10 @@ a {
 
 .row--gutters-large > div {
         padding-right: 100px;
+    }
+
+.row--gutters-small > div {
+       padding-right: 45px; 
     }
 
 .row__b-margin-until-medium {
@@ -744,6 +787,24 @@ a {
             width: 63%;
         }
     }
+
+/* Pocinje Equal Height pravila  */
+
+@media (min-width: 800px) {
+
+.row--equal-height-at-medium {
+           display: -webkit-box;
+           display: -ms-flexbox;
+           display: flex
+   }
+    }
+
+.row--equal-height-at-medium > div {
+           float: none;
+           display: -webkit-box;
+           display: -ms-flexbox;
+           display: flex;
+       }
 
 .generic-content-container p {
         font-weight: 300;
@@ -849,10 +910,21 @@ a {
 
 .testimonial {
     background-color: rgba(255, 255, 255, .8);
-    padding: 0 1.8125rem 1px 1.8125rem;
+    padding: 0 18px 1px 18px; /* 29/16 = 1.8125rem */
+    margin-bottom: 98px;
 }
 
-/* 29/16 = 1.8125rem */
+@media (min-width: 800px) {
+
+.testimonial {
+        padding: 0 1.8125rem 1px 1.8125rem; /* 29/16 = 1.8125rem */  
+        margin-bottom: 0
+}
+    }
+
+.testimonial--last {
+        margin-bottom: 0;
+    }
 
 .testimonial__photo {
         /* background: red; */
