@@ -460,6 +460,11 @@ img {
     height: auto;
 }
 
+* {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; 
+}
+
 /* bitno je gde importujemo sad ovo */
 
 .large-hero {
@@ -564,11 +569,14 @@ img {
     }
 
 .wrapper {
+    overflow: hidden;
     padding-left: 18px;
     padding-right: 18px;
-    max-width: 1200px;
+    max-width: 1236px; /* dodali smo jos ovaj padding od gore 18px + 18px = 36px */
     margin-left: auto;
     margin-right: auto;
+
+    
 }
 
 .wrapper--medium {
@@ -580,12 +588,25 @@ img {
         padding-right: 0;
     }
 
+.wrapper--b-margin {
+        margin-bottom: 1rem;
+    }
+
+@media (min-width: 530px) {
+        .wrapper--b-margin {
+            margin-bottom: 3.875rem;
+        }
+    }
+
 .page-section {
     padding: 1.2rem;
 }
 
 @media (min-width: 800px) {
-        @mixin-conent;
+
+.page-section {
+        padding: 4.5rem 0
+}
     }
 
 .page-section__blue {
@@ -644,4 +665,47 @@ img {
 
 .headline--b-margin-large {
         margin-bottom: 1.6em; /*  */ 
+    }
+
+/* &::after { 
+        content: "";
+        clear: both;
+        display: table;
+         ovo dodaje fejk sadrzaj nakon svog contenta u glavnom .row divu. Jer zbog floatova on se istripuje da je prazan, pa ako stavimo boloio koju boju cisto da vidimo koliki je ovaj glavni .row div, necemo ga ni videti, jer tripuje da je prazan, zato ovo stavljamo i ovo cemo da premestimo u mixins da bi mogli posle ponovo upotrebiti
+    } */
+
+.row::after { 
+        content: "";
+        clear: both;
+        display: table;
+        /* ovo dodaje fejk sadrzaj nakon svog contenta u glavnom .row divu. Jer zbog floatova on se istripuje da je prazan, pa ako stavimo boloio koju boju cisto da vidimo koliki je ovaj glavni .row div, necemo ga ni videti, jer tripuje da je prazan, zato ovo stavljamo i ovo cemo da premestimo u mixins da bi mogli posle ponovo upotrebiti */
+    }
+
+.row--gutters {
+        margin-right: -65px;
+    }
+
+.row--gutters > div { /* ali ne zelimo da ovo primenimo na roditelja tj glavnom .row vec na njegovu decu, otud ovo > div */
+        padding-right: 65px;
+        /* box-sizing: border-box; bez ovoga border-box ovaj section se raspadao, jer 33.33%+66.66% + ovih 65px je preko 100%, i posto je ova linija koda znacajna u globalnom smislu, jer se svugde moze primeniti, premesticemo je u _global.css */
+    }
+
+@media (min-width: 800px) {
+        .row__medium-4 {
+            float: left;
+            width: 33.33%;
+        }
+
+        .row__medium-4--larger {
+            width: 37%;
+        }
+    
+        .row__medium-8 {
+            float: right;
+            width: 66.66%;
+        }
+
+        .row__medium-8--smaller {
+            width: 63%;
+        }
     }

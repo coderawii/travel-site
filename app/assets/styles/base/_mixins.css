@@ -6,12 +6,21 @@
 
 @define-mixin atMedium {
     @media (min-width: 800px) {
-        @mixin-conent;
+        @mixin-content;
     }
 }
 
 @define-mixin atLarge {
     @media (min-width: 1200px) {
         @mixin-content;
+    }
+}
+
+@define-mixin clearfix {
+    &::after { 
+        content: "";
+        clear: both;
+        display: table;
+        /* ovo dodaje fejk sadrzaj nakon svog contenta u glavnom .row divu. Jer zbog floatova on se istripuje da je prazan, pa ako stavimo boloio koju boju cisto da vidimo koliki je ovaj glavni .row div, necemo ga ni videti, jer tripuje da je prazan, zato ovo stavljamo i ovo cemo da premestimo u mixins da bi mogli posle ponovo upotrebiti */
     }
 }
