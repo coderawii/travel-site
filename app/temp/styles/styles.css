@@ -1126,3 +1126,53 @@ UMESTO TOGA EDITUJ gulp/templates/sprite */
             margin-right: 1.4rem
     }
     }
+
+.site-header {
+   position: absolute; 
+   width: 100%;
+   z-index: 2;
+   /* background-color: rgba(47, 85, 114, .3); */
+   background-color: rgba(47,85,114, .3);
+   padding: 10px 0;
+}
+
+.site-header__btn-container {
+       float: right;
+   }
+
+.site-header__logo {
+       position: absolute;
+       top: 0;
+       background-color: #2f5572;
+       padding: 25px 36px;
+   }
+
+.primary-nav--pull-right {
+        float: right;
+    }
+
+.primary-nav ul {
+        margin: 0;
+        padding: 0;
+    }
+
+.primary-nav ul::after { 
+        content: "";
+        clear: both;
+        display: table;
+        /* ovo dodaje fejk sadrzaj nakon svog contenta u glavnom .row divu. Jer zbog floatova on se istripuje da je prazan, pa ako stavimo boloio koju boju cisto da vidimo koliki je ovaj glavni .row div, necemo ga ni videti, jer tripuje da je prazan, zato ovo stavljamo i ovo cemo da premestimo u mixins da bi mogli posle ponovo upotrebiti */
+    }
+
+.primary-nav li {
+        list-style: none;
+        float:left;
+        padding-right: 20px;
+    }
+
+.primary-nav a {
+        color: #fff;
+        font-weight: 300;
+        text-decoration: none;
+        display: block;
+        padding-top: 12px;
+    }
