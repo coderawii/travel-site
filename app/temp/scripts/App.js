@@ -88,26 +88,113 @@
 /* 0 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var $ = __webpack_require__(1); // dakle prethodno smo instalirali u terminalu npm install jqueru --save, i ovde ga stavili u promenljivu $ koji cemo koristiti kao jquery selektor, i sada mozemo da koristimo jquery najnormalnije, ne treba da ga skidamo sa neta i inkludujemo u html 
+"use strict";
+
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _Person2 = __webpack_require__(1);
+
+var _Person3 = _interopRequireDefault(_Person2);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var $ = __webpack_require__(2); // dakle prethodno smo instalirali u terminalu npm install jqueru --save, i ovde ga stavili u promenljivu $ koji cemo koristiti kao jquery selektor, i sada mozemo da koristimo jquery najnormalnije, ne treba da ga skidamo sa neta i inkludujemo u html 
 
 // kako implementirati jeddan js file u drugi, u gulpu smo to radili sa require() ali require ne postoji u cistom js, u gulpu postoji jer radi u okviru node-a, a node podrzava reqire() funcionalnost, a ovaj fajl u km smo tenutno ce se pokretati u okviru browsera, a browser pojma nema sta je require.
 // ali zato imamo webpach (koji instaliramo iz node-a) koji cemo instalirati n ns komp, i reci mu da posmatra nas js file, i on ce da detektuje require ili importovane fajlove i webpach ce da bandluje sve individualne fajlove zajedno u jedan js fajl, a ti bundle fajlovi rade u browserima. BUNDLED = paket, svezanj
-var Person = __webpack_require__(2);
+// var Person = require('./modules/Person'); // ovo je node nacin i node f-ja, a imamo i es6 nacin, a to je sa import:
+
+// es16 i posto koristimo es16 import nacin, trebalo bi i da koristimo es6 export nacin:
+
 
 // console.log(Person.nekiProperty);
 // Person.nekaFunckija();
 
+var Adult = function (_Person) {
+    _inherits(Adult, _Person);
 
-var john = new Person("John Doe", "blue");
+    function Adult() {
+        _classCallCheck(this, Adult);
+
+        return _possibleConstructorReturn(this, (Adult.__proto__ || Object.getPrototypeOf(Adult)).apply(this, arguments));
+    }
+
+    _createClass(Adult, [{
+        key: "payTaxes",
+        value: function payTaxes() {
+            console.log(this.name + " now owes $0 in taxes");
+        }
+    }]);
+
+    return Adult;
+}(_Person3.default);
+
+var john = new _Person3.default("John Doe", "blue");
 john.greet();
 
-var jane = new Person("Jane Smith", "green");
+var jane = new Adult("Jane Smith", "orange");
 jane.greet();
+jane.payTaxes();
 
 // $('h1').remove();
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var Person = function () {
+    function Person(fullName, favColor) {
+        _classCallCheck(this, Person);
+
+        this.name = fullName;
+        this.favoriteColor = favColor;
+    }
+
+    _createClass(Person, [{
+        key: "greet",
+        value: function greet() {
+            console.log("Hello there, my name is " + this.name + " and my fav color is " + this.favoriteColor);
+        }
+    }]);
+
+    return Person;
+}();
+
+/*
+    console.log("hello from Person.js")
+    exports.nekiProperty = "NEka super vrednost";
+    exports.nekaFunckija = function() {
+        alert("ovo je neki primer");
+    }
+*/
+// i umesto da ovako exportujemo stvari export.Property....export.nekaFunkcija itd, ponaosob,i ne zelimo da ono sto exportujemo objekat koji ce da sadrzi stvari iz Person, zelimo da ono sto exportujemo BUDE Person, tako da umesto exports.paNesto bolje da targetujemo exports object parenta, sto je zapravo objekat koji se zove module:
+// module.exports = Person;
+
+// es16 i posto koristimo es16 import nacin, trebalo bi i da koristimo es6 export nacin:
+
+
+exports.default = Person;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -10365,28 +10452,6 @@ if ( !noGlobal ) {
 return jQuery;
 } );
 
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports) {
-
-function Person(fullName, favColor) {
-    this.name = fullName;
-    this.favoriteColor = favColor;
-    this.greet = function() {
-        console.log("Hello there, my name is " + this.name + " and my fav color is " + this.favoriteColor);
-    }
-}
-
-/*
-    console.log("hello from Person.js")
-    exports.nekiProperty = "NEka super vrednost";
-    exports.nekaFunckija = function() {
-        alert("ovo je neki primer");
-    }
-*/
-// i umesto da ovako exportujemo stvari export.Property....export.nekaFunkcija itd, ponaosob,i ne zelimo da ono sto exportujemo objekat koji ce da sadrzi stvari iz Person, zelimo da ono sto exportujemo BUDE Person, tako da umesto exports.paNesto bolje da targetujemo exports object parenta, sto je zapravo objekat koji se zove module:
-module.exports = Person;
 
 /***/ })
 /******/ ]);
