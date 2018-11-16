@@ -1406,10 +1406,14 @@ UMESTO TOGA EDITUJ gulp/templates/sprite */
 @media (min-width: 800px) {
 
 .primary-nav a {
-        padding: 12px 0;
-        font-size: 1rem;            
-        background-color: transparent
+            padding: 12px 0;
+            font-size: 1rem;            
+            background-color: transparent
     }
+
+            .primary-nav a.is-current-link {
+                color: #fabb69;
+            }
     }
 
 .reveal-item {
