@@ -12,6 +12,11 @@
    @mixin atMedium {
     /* background-color: rgba(47, 85, 114, .3); */
       background-color: rgba($mainBlue, .3);
+      position: fixed;
+
+      &--dark {
+          background-color: rgba(23, 51, 72, .85);
+      }
    }
 
 
@@ -27,12 +32,17 @@
        left: 50%;
        transform: translateX(-50%) scale(.8);
        transform-origin: 50% 0;
+       transition: transform .3s ease-out;
        background-color: $mainBlue;
        padding: 25px 36px;
 
        @mixin atMedium {
            left: auto;
-           transform: translatX(0); 
+           transform: translatX(0);
+
+           .site-header--dark & { /* selektuje logo, tj targetuje logo samo kad je --dark koriscen */
+               transform: scale(.57); /* da se smanji malo prilikom onog skrola u js-u */ 
+           }
        }
    }
 
