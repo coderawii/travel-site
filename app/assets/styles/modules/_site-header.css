@@ -42,16 +42,84 @@
 
    &__menu-icon {
        width: 20px;
-       height: 20px;
-       background-color: #fff;
+       /* height: 20px; */
+       height: 19px;
        position: absolute;
        z-index: 10;
        top: 10px;
        right: 10px;
 
+       /* &__top {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 20px;
+           height: 3px;
+           background-color: #fff;
+       } */
+        &::before { /* sudo element */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transform-origin: 0 0; /* 50% 50%  ovo je difoltna, tj horizontalni centar elementa 50% i vertikalni centar elementa 50% */
+            transition: transform .3s ease-out;
+        }
+
+        &__middle {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transition: all .3s ease-out;
+            transform-origin: 0 100%; /* omogucava da se ovaj div nestaje od leva ka desno, ili pojma nemam */
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            /* top: 16px; */
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transform-origin: 0 100%; /* 0 - ovde zelimo da se krene rotacija od donjeg levog ugla, a 100% da ide vertikalno od dole, pojma nemam sta je hteo reci. I sada ovaj iks izgleda kao da je ovaj after veci za 1px od onog before, pa zato dole u after u onaj vec napisati transform dodajemo translateY(1px) */
+            transition: transform .3s ease-out;
+        }
+
+       /* &__bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+        }*/
+
        @mixin atMedium {
            display: none;
        }
+   }
+
+   &__menu-icon--close-x {
+       &::before {
+           transform: rotate(45deg) scaleX(1.25); /* medjutim mi ocemo da gornji desno ugao ostane na mestu, i zato gore u ::before stavljamo za transform-origin: 0 0; i rotacija time vise ne krece od centra tog diva. A sa scaleX(1.25) se produzava kao taj div, tj povecava mu se width (x osa) */
+       }
+
+       .site-header__menu-icon__middle {
+           opacity: 0;
+           transform: scaleX(0);
+       }
+
+       &::after {
+        transform: rotate(-45deg) scaleX(1.25) translateY(1px); /* ovo translateY(1px) - nam dozvoljava da podesimo/doteramo Y osu, tj vertikalno pozicioniranje elementa */
+    }
    }
 
    &__menu-content {

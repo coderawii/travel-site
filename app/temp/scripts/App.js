@@ -154,6 +154,7 @@ var MobileMenu = function () {
             this.menuContent.toggleClass("site-header__menu-content--is-visible"); // App.js:145 Uncaught TypeError: Cannot read property 'toogleClass' of undefined - i ova greska je sve zbog js THIS keyworda, ovu gresku dobijamo jer ovaj kod (this.menuContent) ne pristupa uspesno menuContent propertyju, i onda se pitamo zasto recimo u events() this.menuIcon ili this.toggleMenu f-nise kako treba, ili u constructoru u this.events(), a ovde ne. Odg je, jer se vrednost this-a menja u zavisnosti gde ga koristimo, u normalnim uslovima, (ovim prethodno navedenim gde recimo radi) kada this koristimo u sklopu/unutar objekata on ukazuje na objekat, ali zasto nam ovde this ima drugaciji value, zasto ne pokazuje na objekat? zato sto kada se ovaj toggleTheMenu metod pokrene, mi ga nismo pozvali direktno vec preko klika, kada korisnik klikne, dakle pozivamo ovaj metod u events() tj u klik event. A kad se f-ja koristi kao event hendler, this keyword unutar te fje (dakle this u toggleTheMenu), setuje DOM element da bude onaj gde je event okinut, dakle u ovom slucaju element na koji je kliknuto sto bi bio nas menuIcon element. I to mozemo bolje prikazati tako sto cemo metnuti console.log(this) u oba ova metoda, i y events() i u toggleTheMenu() da vidimo na sta ce da ukazuju
 
             this.siteHeader.toggleClass("site-header--is-expanded");
+            this.menuIcon.toggleClass("site-header__menu-icon--close-x");
         }
     }]);
 
