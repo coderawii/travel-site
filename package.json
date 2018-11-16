@@ -14,11 +14,7 @@
     "@babel/preset-env": "^7.1.6",
     "autoprefixer": "^7.1.6",
     "babel-core": "^6.26.0",
-<<<<<<< HEAD
-    "babel-loader": "^7.1.2",
-=======
     "babel-loader": "^7.1.5",
->>>>>>> header
     "babel-preset-es2015": "^6.24.1",
     "browser-sync": "^2.26.3",
     "del": "^3.0.0",
@@ -38,11 +34,7 @@
     "postcss-import": "^11.0.0",
     "postcss-mixins": "^6.2.0",
     "postcss-nested": "^2.1.2",
-<<<<<<< HEAD
-    "postcss-simple-vars": "^4.1.0"
-=======
     "postcss-simple-vars": "^4.1.0",
     "webpack": "^3.8.1"
->>>>>>> header
   }
 }
