@@ -1,0 +1,153 @@
+.site-header {
+   position: absolute; 
+   width: 100%;
+   z-index: 2;
+   padding: 10px 0; 
+   transition: background-color .3s ease-out;
+
+    &--is-expanded {
+        background-color: rgba($mainBlue, .55);
+    }
+
+   @mixin atMedium {
+    /* background-color: rgba(47, 85, 114, .3); */
+      background-color: rgba($mainBlue, .3);
+   }
+
+
+   &__btn-container {
+       @mixin atMedium {
+           float: right;
+       }
+    }    
+
+   &__logo {
+       position: absolute;
+       top: 0;
+       left: 50%;
+       transform: translateX(-50%) scale(.8);
+       transform-origin: 50% 0;
+       background-color: $mainBlue;
+       padding: 25px 36px;
+
+       @mixin atMedium {
+           left: auto;
+           transform: translatX(0); 
+       }
+   }
+
+   &__logo__graphic {
+       text-indent: -9999px; /* ovo krije taj text ali ne i sam element. wtf, ne razumem sto ovo radimo */
+   }
+
+   &__menu-icon {
+       width: 20px;
+       /* height: 20px; */
+       height: 19px;
+       position: absolute;
+       z-index: 10;
+       top: 10px;
+       right: 10px;
+
+       /* &__top {
+           position: absolute;
+           top: 0;
+           left: 0;
+           width: 20px;
+           height: 3px;
+           background-color: #fff;
+       } */
+        &::before { /* sudo element */
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transform-origin: 0 0; /* 50% 50%  ovo je difoltna, tj horizontalni centar elementa 50% i vertikalni centar elementa 50% */
+            transition: transform .3s ease-out;
+        }
+
+        &__middle {
+            position: absolute;
+            top: 8px;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transition: all .3s ease-out;
+            transform-origin: 0 100%; /* omogucava da se ovaj div nestaje od leva ka desno, ili pojma nemam */
+        }
+
+        &::after {
+            content: "";
+            position: absolute;
+            /* top: 16px; */
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+            transform-origin: 0 100%; /* 0 - ovde zelimo da se krene rotacija od donjeg levog ugla, a 100% da ide vertikalno od dole, pojma nemam sta je hteo reci. I sada ovaj iks izgleda kao da je ovaj after veci za 1px od onog before, pa zato dole u after u onaj vec napisati transform dodajemo translateY(1px) */
+            transition: transform .3s ease-out;
+        }
+
+       /* &__bottom {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 20px;
+            height: 3px;
+            background-color: #fff;
+        }*/
+
+       @mixin atMedium {
+           display: none;
+       }
+   }
+
+   &__menu-icon--close-x {
+       &::before {
+           transform: rotate(45deg) scaleX(1.25); /* medjutim mi ocemo da gornji desno ugao ostane na mestu, i zato gore u ::before stavljamo za transform-origin: 0 0; i rotacija time vise ne krece od centra tog diva. A sa scaleX(1.25) se produzava kao taj div, tj povecava mu se width (x osa) */
+       }
+
+       .site-header__menu-icon__middle {
+           opacity: 0;
+           transform: scaleX(0);
+       }
+
+       &::after {
+        transform: rotate(-45deg) scaleX(1.25) translateY(1px); /* ovo translateY(1px) - nam dozvoljava da podesimo/doteramo Y osu, tj vertikalno pozicioniranje elementa */
+    }
+   }
+
+   &__menu-content {
+       /* display: none; */
+       opacity: 0;
+       /* transition: opacity .3s ease-out; */
+       transition: all .3s ease-out;
+       position: relative;
+       z-index: -10; /* e sad, umesto ovog display: none; koristimo opacity: 0; da bi mogli da mu stavimo efekat u transition kao da se postepeno pojavljuje kada se okine klik tj dodeli dole napisana klasa --is-visible u kom je opacity: 1; tj content postaje vidljiv. Medjutim, za razliku od display: none; gde je sadrzaj totalno uklonjem, kod opacity:0; on je i dalje tu, samo nije vidljiv, a posto ne zelimo da korisnik slucajno klikne na taj sadrzaj dok nije vidljiv, stavljamo mu z-index: -10; da budemo sig da ce on biti ispod svih, i da se nece moci nikako kliknuti, i zbog z-indexa takodje moramo da stavimo position: relative; inace browser nece priznati/prihvatiti/prepoznati z-index vrednost. I potom za klasu --is-visible, z-index nam treba da je 1, tj da se sad moze na njega kliknuti. I sad smo gore promenili umesto transiton za opacity da bude all */
+       transform: scale(1.2); /* 1 je normalno */
+       padding-top: 90px;
+       text-align: center;
+
+       @mixin atMedium {
+           /* display: block; */
+           opacity: 1;
+           z-index: 1;
+           padding-top: 0;
+           transform: scale(1);
+       }
+
+       &--is-visible {
+           /* display: block; */
+           opacity: 1;
+           z-index: 1;
+           transform: scale(1); /* ali sada se ne moze ponovo kliknuti na dugne jer je z-index: -10; tako da idemo meni-icon da damo najveci index  */
+       }
+
+   }
+   
+}
