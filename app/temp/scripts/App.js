@@ -91,59 +91,13 @@
 "use strict";
 
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _MobileMenu = __webpack_require__(1);
 
-var _Person2 = __webpack_require__(1);
-
-var _Person3 = _interopRequireDefault(_Person2);
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var $ = __webpack_require__(2); // dakle prethodno smo instalirali u terminalu npm install jqueru --save, i ovde ga stavili u promenljivu $ koji cemo koristiti kao jquery selektor, i sada mozemo da koristimo jquery najnormalnije, ne treba da ga skidamo sa neta i inkludujemo u html 
-
-// kako implementirati jeddan js file u drugi, u gulpu smo to radili sa require() ali require ne postoji u cistom js, u gulpu postoji jer radi u okviru node-a, a node podrzava reqire() funcionalnost, a ovaj fajl u km smo tenutno ce se pokretati u okviru browsera, a browser pojma nema sta je require.
-// ali zato imamo webpach (koji instaliramo iz node-a) koji cemo instalirati n ns komp, i reci mu da posmatra nas js file, i on ce da detektuje require ili importovane fajlove i webpach ce da bandluje sve individualne fajlove zajedno u jedan js fajl, a ti bundle fajlovi rade u browserima. BUNDLED = paket, svezanj
-// var Person = require('./modules/Person'); // ovo je node nacin i node f-ja, a imamo i es6 nacin, a to je sa import:
-
-// es16 i posto koristimo es16 import nacin, trebalo bi i da koristimo es6 export nacin:
-
-
-// console.log(Person.nekiProperty);
-// Person.nekaFunckija();
-
-var Adult = function (_Person) {
-    _inherits(Adult, _Person);
-
-    function Adult() {
-        _classCallCheck(this, Adult);
-
-        return _possibleConstructorReturn(this, (Adult.__proto__ || Object.getPrototypeOf(Adult)).apply(this, arguments));
-    }
-
-    _createClass(Adult, [{
-        key: "payTaxes",
-        value: function payTaxes() {
-            console.log(this.name + " now owes $0 in taxes");
-        }
-    }]);
-
-    return Adult;
-}(_Person3.default);
-
-var john = new _Person3.default("John Doe", "blue");
-john.greet();
-
-var jane = new Adult("Jane Smith", "orange");
-jane.greet();
-jane.payTaxes();
-
-// $('h1').remove();
+var mobileMenu = new _MobileMenu2.default();
 
 /***/ }),
 /* 1 */
@@ -158,40 +112,54 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
+var _jquery = __webpack_require__(2);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Person = function () {
-    function Person(fullName, favColor) {
-        _classCallCheck(this, Person);
+var MobileMenu = function () {
+    function MobileMenu() {
+        _classCallCheck(this, MobileMenu);
 
-        this.name = fullName;
-        this.favoriteColor = favColor;
+        // $(".site-header__menu-icon").click(function(){
+        //     console.log("Gornj desna ikonica je kliknuta, ali ovo je nnapravlejno jquery spagetty kodom");
+        // }); // jquery spaghetti jer se radi sve odjednom, prvo selektujemo elemente iz DOMa, drugo mi rukujemo s dogadjajima, i trece definisemo fukncionalnost, tj sta treba da se uradi odredjenim eventom (selektor-event-funckionalnost iliti forks-spones-knifes iliti viljuske-kasike-nozevi) 
+
+        this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
+        this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
+        this.events();
     }
 
-    _createClass(Person, [{
-        key: "greet",
-        value: function greet() {
-            console.log("Hello there, my name is " + this.name + " and my fav color is " + this.favoriteColor);
+    _createClass(MobileMenu, [{
+        key: "events",
+        value: function events() {
+            // u jsu ovo events ime nije neko posebno ime, tj                      browser ne ocekuje ili ne trazi specijalan metod sa                 imenom events pa zato, ako zeimo da browser osluskuje               ovaj event cim se stranica ucita treba ond rucno da                 pozovemo ovaj metod cim je objekat kreiran pa cemo ga               tako pozvati u construcoturu
+            // this.menuIcon.click(this.toggleTheMenu.bind("hello"));
+            // console.log(this); // this ukazivanje test
+            this.menuIcon.click(this.toggleTheMenu.bind(this));
+        }
+    }, {
+        key: "toggleTheMenu",
+        value: function toggleTheMenu() {
+            // console.log(this); // this ukazivanje test - ukazuje na menuIcon element (vraca citav div)
+            // this.remove(); // i on ce da obrise gore pomenuti div
+
+            // ali ovde ne zelimo da ovaj this bude jednako sa menuIcon elementom, zelimo da ovo this ponovo ukazuje na nas objekat da mozemo da ga koristimo da pristupimo menuContent propertiju ali kako da to uradim, kako da overwritujemo js difoltno ponasanje i kako da imamo konacnu kontrolu nad ovim this keywordom? Pa, mozemo da koristimo js feature bind(), i njega cemo koristiti gore u click eventu kada preko this-a pristupamo toggleTheMenu, i unutar bind() se stavlja ono sto cemo koristiti u this-u kada se ovaj toggleTheMenu pozove, tj na sta zelimo da this ukazuje kada se bude koristio u toggleTheMenu
+            // alert(this);
+
+            this.menuContent.toggleClass("site-header__menu-content--is-visible"); // App.js:145 Uncaught TypeError: Cannot read property 'toogleClass' of undefined - i ova greska je sve zbog js THIS keyworda, ovu gresku dobijamo jer ovaj kod (this.menuContent) ne pristupa uspesno menuContent propertyju, i onda se pitamo zasto recimo u events() this.menuIcon ili this.toggleMenu f-nise kako treba, ili u constructoru u this.events(), a ovde ne. Odg je, jer se vrednost this-a menja u zavisnosti gde ga koristimo, u normalnim uslovima, (ovim prethodno navedenim gde recimo radi) kada this koristimo u sklopu/unutar objekata on ukazuje na objekat, ali zasto nam ovde this ima drugaciji value, zasto ne pokazuje na objekat? zato sto kada se ovaj toggleTheMenu metod pokrene, mi ga nismo pozvali direktno vec preko klika, kada korisnik klikne, dakle pozivamo ovaj metod u events() tj u klik event. A kad se f-ja koristi kao event hendler, this keyword unutar te fje (dakle this u toggleTheMenu), setuje DOM element da bude onaj gde je event okinut, dakle u ovom slucaju element na koji je kliknuto sto bi bio nas menuIcon element. I to mozemo bolje prikazati tako sto cemo metnuti console.log(this) u oba ova metoda, i y events() i u toggleTheMenu() da vidimo na sta ce da ukazuju
         }
     }]);
 
-    return Person;
+    return MobileMenu;
 }();
 
-/*
-    console.log("hello from Person.js")
-    exports.nekiProperty = "NEka super vrednost";
-    exports.nekaFunckija = function() {
-        alert("ovo je neki primer");
-    }
-*/
-// i umesto da ovako exportujemo stvari export.Property....export.nekaFunkcija itd, ponaosob,i ne zelimo da ono sto exportujemo objekat koji ce da sadrzi stvari iz Person, zelimo da ono sto exportujemo BUDE Person, tako da umesto exports.paNesto bolje da targetujemo exports object parenta, sto je zapravo objekat koji se zove module:
-// module.exports = Person;
+exports.default = MobileMenu;
 
-// es16 i posto koristimo es16 import nacin, trebalo bi i da koristimo es6 export nacin:
-
-
-exports.default = Person;
+//
 
 /***/ }),
 /* 2 */
