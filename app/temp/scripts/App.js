@@ -36,32 +36,12 @@
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, { enumerable: true, get: getter });
+/******/ 			Object.defineProperty(exports, name, {
+/******/ 				configurable: false,
+/******/ 				enumerable: true,
+/******/ 				get: getter
+/******/ 			});
 /******/ 		}
-/******/ 	};
-/******/
-/******/ 	// define __esModule on exports
-/******/ 	__webpack_require__.r = function(exports) {
-/******/ 		if(typeof Symbol !== 'undefined' && Symbol.toStringTag) {
-/******/ 			Object.defineProperty(exports, Symbol.toStringTag, { value: 'Module' });
-/******/ 		}
-/******/ 		Object.defineProperty(exports, '__esModule', { value: true });
-/******/ 	};
-/******/
-/******/ 	// create a fake namespace object
-/******/ 	// mode & 1: value is a module id, require it
-/******/ 	// mode & 2: merge all properties of value into the ns
-/******/ 	// mode & 4: return value when already ns object
-/******/ 	// mode & 8|1: behave like require
-/******/ 	__webpack_require__.t = function(value, mode) {
-/******/ 		if(mode & 1) value = __webpack_require__(value);
-/******/ 		if(mode & 8) return value;
-/******/ 		if((mode & 4) && typeof value === 'object' && value && value.__esModule) return value;
-/******/ 		var ns = Object.create(null);
-/******/ 		__webpack_require__.r(ns);
-/******/ 		Object.defineProperty(ns, 'default', { enumerable: true, value: value });
-/******/ 		if(mode & 2 && typeof value != 'string') for(var key in value) __webpack_require__.d(ns, key, function(key) { return value[key]; }.bind(null, key));
-/******/ 		return ns;
 /******/ 	};
 /******/
 /******/ 	// getDefaultExport function for compatibility with non-harmony modules
@@ -79,116 +59,12 @@
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
 /******/
-/******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 0);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _MobileMenu = __webpack_require__(1);
-
-var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
-
-var _RevealOnScroll = __webpack_require__(3);
-
-var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
-
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _StickyHeader = __webpack_require__(5);
-
-var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
-
-var _Modal = __webpack_require__(7);
-
-var _Modal2 = _interopRequireDefault(_Modal);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var mobileMenu = new _MobileMenu2.default();
-// var revealOnScroll = new RevealOnScroll();
-new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
-new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
-var stickyHeader = new _StickyHeader2.default();
-
-var modal = new _Modal2.default();
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var MobileMenu = function () {
-    function MobileMenu() {
-        _classCallCheck(this, MobileMenu);
-
-        // $(".site-header__menu-icon").click(function(){
-        //     console.log("Gornj desna ikonica je kliknuta, ali ovo je nnapravlejno jquery spagetty kodom");
-        // }); // jquery spaghetti jer se radi sve odjednom, prvo selektujemo elemente iz DOMa, drugo mi rukujemo s dogadjajima, i trece definisemo fukncionalnost, tj sta treba da se uradi odredjenim eventom (selektor-event-funckionalnost iliti forks-spones-knifes iliti viljuske-kasike-nozevi) 
-
-        this.siteHeader = (0, _jquery2.default)(".site-header");
-        this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
-        this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
-        this.events();
-    }
-
-    _createClass(MobileMenu, [{
-        key: "events",
-        value: function events() {
-            // u jsu ovo events ime nije neko posebno ime, tj                      browser ne ocekuje ili ne trazi specijalan metod sa                 imenom events pa zato, ako zeimo da browser osluskuje               ovaj event cim se stranica ucita treba ond rucno da                 pozovemo ovaj metod cim je objekat kreiran pa cemo ga               tako pozvati u construcoturu
-            // this.menuIcon.click(this.toggleTheMenu.bind("hello"));
-            // console.log(this); // this ukazivanje test
-            this.menuIcon.click(this.toggleTheMenu.bind(this));
-        }
-    }, {
-        key: "toggleTheMenu",
-        value: function toggleTheMenu() {
-            // console.log(this); // this ukazivanje test - ukazuje na menuIcon element (vraca citav div)
-            // this.remove(); // i on ce da obrise gore pomenuti div
-
-            // ali ovde ne zelimo da ovaj this bude jednako sa menuIcon elementom, zelimo da ovo this ponovo ukazuje na nas objekat da mozemo da ga koristimo da pristupimo menuContent propertiju ali kako da to uradim, kako da overwritujemo js difoltno ponasanje i kako da imamo konacnu kontrolu nad ovim this keywordom? Pa, mozemo da koristimo js feature bind(), i njega cemo koristiti gore u click eventu kada preko this-a pristupamo toggleTheMenu, i unutar bind() se stavlja ono sto cemo koristiti u this-u kada se ovaj toggleTheMenu pozove, tj na sta zelimo da this ukazuje kada se bude koristio u toggleTheMenu
-            // alert(this);
-
-            this.menuContent.toggleClass("site-header__menu-content--is-visible"); // App.js:145 Uncaught TypeError: Cannot read property 'toogleClass' of undefined - i ova greska je sve zbog js THIS keyworda, ovu gresku dobijamo jer ovaj kod (this.menuContent) ne pristupa uspesno menuContent propertyju, i onda se pitamo zasto recimo u events() this.menuIcon ili this.toggleMenu f-nise kako treba, ili u constructoru u this.events(), a ovde ne. Odg je, jer se vrednost this-a menja u zavisnosti gde ga koristimo, u normalnim uslovima, (ovim prethodno navedenim gde recimo radi) kada this koristimo u sklopu/unutar objekata on ukazuje na objekat, ali zasto nam ovde this ima drugaciji value, zasto ne pokazuje na objekat? zato sto kada se ovaj toggleTheMenu metod pokrene, mi ga nismo pozvali direktno vec preko klika, kada korisnik klikne, dakle pozivamo ovaj metod u events() tj u klik event. A kad se f-ja koristi kao event hendler, this keyword unutar te fje (dakle this u toggleTheMenu), setuje DOM element da bude onaj gde je event okinut, dakle u ovom slucaju element na koji je kliknuto sto bi bio nas menuIcon element. I to mozemo bolje prikazati tako sto cemo metnuti console.log(this) u oba ova metoda, i y events() i u toggleTheMenu() da vidimo na sta ce da ukazuju
-
-            this.siteHeader.toggleClass("site-header--is-expanded");
-            this.menuIcon.toggleClass("site-header__menu-icon--close-x");
-        }
-    }]);
-
-    return MobileMenu;
-}();
-
-exports.default = MobileMenu;
-
-//
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -208,7 +84,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 	"use strict";
 
-	if (  true && typeof module.exports === "object" ) {
+	if ( typeof module === "object" && typeof module.exports === "object" ) {
 
 		// For CommonJS and CommonJS-like environments where a proper `window`
 		// is present, execute the factory and get jQuery.
@@ -10448,75 +10324,7 @@ return jQuery;
 
 
 /***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-    value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _jquery = __webpack_require__(2);
-
-var _jquery2 = _interopRequireDefault(_jquery);
-
-var _noframework = __webpack_require__(4);
-
-var _noframework2 = _interopRequireDefault(_noframework);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var RevealOnScroll = function () {
-    function RevealOnScroll(els, offset) {
-        _classCallCheck(this, RevealOnScroll);
-
-        // BITAN JE REDOSLED F-JA !!!
-        // this.itemsToReveal = $('.feature-item, .testimonial');
-        this.itemsToReveal = els;
-        this.offsetPercentage = offset;
-        this.hideInitially();
-        this.createWaypoints();
-    }
-
-    _createClass(RevealOnScroll, [{
-        key: 'hideInitially',
-        value: function hideInitially() {
-            this.itemsToReveal.addClass("reveal-item"); // a posto zelimo da se ovo okine cim se ucita stranica, pozivamo ga u constructoru
-        }
-    }, {
-        key: 'createWaypoints',
-        value: function createWaypoints() {
-            var that = this;
-            this.itemsToReveal.each(function () {
-                // this; // ovo je da se odnosi na specifican element
-                //i sad ovde kriramo po jedan Waypoint za svaki item (ima ih 4)
-                var currentItem = this;
-                new Waypoint({
-                    element: currentItem, // DOM element koji zelimo da posmatramo (watch) kada skrolujemo stranicu
-                    handler: function handler() {
-                        // zelimo na taj skrol do currentItem-a, da se doda css klasa kojom ce taj nas item/div postepeno postati vidljivi
-                        (0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
-                    }, // sta zelimo da se dogodi kada se skroluje na taj element
-                    // offset: "85%"// ovo pusti video 046 klip pred kraj objasnjava zasto smo dodali offset, u stustini igraj se pa probaj sa i bez
-                    offset: that.offsetPercentage // medjutim ovo this.offsetPercentage nece moci uspesno da pristupi this.offsetPercentage = offset; propertyju, to je jer u okviru ovog obj Waypoint js this keyw. vise ne pokazuje na gl objekat RevealOnScroll koji ima offsetPercebtage property, ovde ovo this pokazuje na ovaj Waypoint individualan obj koji je kreiran, pa zato treba da pristupimo gl objektu u okviru ovog this.offsetPercentage kontexta, i zato cemo gore, da napravimo promenljivu that koja ce biti jednaka this, jer onda ce preko that-a, ovaj this da pokazuje sta treba
-                }); // dakle ovaj kod ce se izvrsiti 4x, iliti za svaki item u itemsToReveal po jednom, i onda kada se dodje do element: propertyja mi zelimo da damo do znanja koji element je na redu u loop-u, tj kroz koji se u datom momentu loopujemo, i u okviru jquery each() this keywoard ukazuje na trenutni element kroz koji se loopuje, tj trenutni DOM element, ali bezobzira, ne mozemo za elemenent staviti this, jer taj deo koda ( new Waypoint({element: x, handler: x}); ) kreira novi objekat, a u okviru constructor f-je (u new Waypoint()), this ce vratiti taj objekat. Ali izvan tog konstruktora tj new Waypoint-a, ovaj odmah iznad this i ukazuje na DOM objekat koji zelimo
-            });
-        }
-    }]);
-
-    return RevealOnScroll;
-}();
-
-exports.default = RevealOnScroll;
-
-/***/ }),
-/* 4 */
+/* 1 */
 /***/ (function(module, exports) {
 
 /*!
@@ -11279,6 +11087,177 @@ https://github.com/imakewebthings/waypoints/blob/master/licenses.txt
 ;
 
 /***/ }),
+/* 2 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _MobileMenu = __webpack_require__(3);
+
+var _MobileMenu2 = _interopRequireDefault(_MobileMenu);
+
+var _RevealOnScroll = __webpack_require__(4);
+
+var _RevealOnScroll2 = _interopRequireDefault(_RevealOnScroll);
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _StickyHeader = __webpack_require__(5);
+
+var _StickyHeader2 = _interopRequireDefault(_StickyHeader);
+
+var _Modal = __webpack_require__(7);
+
+var _Modal2 = _interopRequireDefault(_Modal);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var mobileMenu = new _MobileMenu2.default();
+// var revealOnScroll = new RevealOnScroll();
+new _RevealOnScroll2.default((0, _jquery2.default)(".feature-item"), "85%");
+new _RevealOnScroll2.default((0, _jquery2.default)(".testimonial"), "60%");
+var stickyHeader = new _StickyHeader2.default();
+
+var modal = new _Modal2.default();
+
+/***/ }),
+/* 3 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var MobileMenu = function () {
+    function MobileMenu() {
+        _classCallCheck(this, MobileMenu);
+
+        // $(".site-header__menu-icon").click(function(){
+        //     console.log("Gornj desna ikonica je kliknuta, ali ovo je nnapravlejno jquery spagetty kodom");
+        // }); // jquery spaghetti jer se radi sve odjednom, prvo selektujemo elemente iz DOMa, drugo mi rukujemo s dogadjajima, i trece definisemo fukncionalnost, tj sta treba da se uradi odredjenim eventom (selektor-event-funckionalnost iliti forks-spones-knifes iliti viljuske-kasike-nozevi) 
+
+        this.siteHeader = (0, _jquery2.default)(".site-header");
+        this.menuIcon = (0, _jquery2.default)(".site-header__menu-icon");
+        this.menuContent = (0, _jquery2.default)(".site-header__menu-content");
+        this.events();
+    }
+
+    _createClass(MobileMenu, [{
+        key: "events",
+        value: function events() {
+            // u jsu ovo events ime nije neko posebno ime, tj                      browser ne ocekuje ili ne trazi specijalan metod sa                 imenom events pa zato, ako zeimo da browser osluskuje               ovaj event cim se stranica ucita treba ond rucno da                 pozovemo ovaj metod cim je objekat kreiran pa cemo ga               tako pozvati u construcoturu
+            // this.menuIcon.click(this.toggleTheMenu.bind("hello"));
+            // console.log(this); // this ukazivanje test
+            this.menuIcon.click(this.toggleTheMenu.bind(this));
+        }
+    }, {
+        key: "toggleTheMenu",
+        value: function toggleTheMenu() {
+            // console.log(this); // this ukazivanje test - ukazuje na menuIcon element (vraca citav div)
+            // this.remove(); // i on ce da obrise gore pomenuti div
+
+            // ali ovde ne zelimo da ovaj this bude jednako sa menuIcon elementom, zelimo da ovo this ponovo ukazuje na nas objekat da mozemo da ga koristimo da pristupimo menuContent propertiju ali kako da to uradim, kako da overwritujemo js difoltno ponasanje i kako da imamo konacnu kontrolu nad ovim this keywordom? Pa, mozemo da koristimo js feature bind(), i njega cemo koristiti gore u click eventu kada preko this-a pristupamo toggleTheMenu, i unutar bind() se stavlja ono sto cemo koristiti u this-u kada se ovaj toggleTheMenu pozove, tj na sta zelimo da this ukazuje kada se bude koristio u toggleTheMenu
+            // alert(this);
+
+            this.menuContent.toggleClass("site-header__menu-content--is-visible"); // App.js:145 Uncaught TypeError: Cannot read property 'toogleClass' of undefined - i ova greska je sve zbog js THIS keyworda, ovu gresku dobijamo jer ovaj kod (this.menuContent) ne pristupa uspesno menuContent propertyju, i onda se pitamo zasto recimo u events() this.menuIcon ili this.toggleMenu f-nise kako treba, ili u constructoru u this.events(), a ovde ne. Odg je, jer se vrednost this-a menja u zavisnosti gde ga koristimo, u normalnim uslovima, (ovim prethodno navedenim gde recimo radi) kada this koristimo u sklopu/unutar objekata on ukazuje na objekat, ali zasto nam ovde this ima drugaciji value, zasto ne pokazuje na objekat? zato sto kada se ovaj toggleTheMenu metod pokrene, mi ga nismo pozvali direktno vec preko klika, kada korisnik klikne, dakle pozivamo ovaj metod u events() tj u klik event. A kad se f-ja koristi kao event hendler, this keyword unutar te fje (dakle this u toggleTheMenu), setuje DOM element da bude onaj gde je event okinut, dakle u ovom slucaju element na koji je kliknuto sto bi bio nas menuIcon element. I to mozemo bolje prikazati tako sto cemo metnuti console.log(this) u oba ova metoda, i y events() i u toggleTheMenu() da vidimo na sta ce da ukazuju
+
+            this.siteHeader.toggleClass("site-header--is-expanded");
+            this.menuIcon.toggleClass("site-header__menu-icon--close-x");
+        }
+    }]);
+
+    return MobileMenu;
+}();
+
+exports.default = MobileMenu;
+
+//
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _jquery = __webpack_require__(0);
+
+var _jquery2 = _interopRequireDefault(_jquery);
+
+var _noframework = __webpack_require__(1);
+
+var _noframework2 = _interopRequireDefault(_noframework);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var RevealOnScroll = function () {
+    function RevealOnScroll(els, offset) {
+        _classCallCheck(this, RevealOnScroll);
+
+        // BITAN JE REDOSLED F-JA !!!
+        // this.itemsToReveal = $('.feature-item, .testimonial');
+        this.itemsToReveal = els;
+        this.offsetPercentage = offset;
+        this.hideInitially();
+        this.createWaypoints();
+    }
+
+    _createClass(RevealOnScroll, [{
+        key: 'hideInitially',
+        value: function hideInitially() {
+            this.itemsToReveal.addClass("reveal-item"); // a posto zelimo da se ovo okine cim se ucita stranica, pozivamo ga u constructoru
+        }
+    }, {
+        key: 'createWaypoints',
+        value: function createWaypoints() {
+            var that = this;
+            this.itemsToReveal.each(function () {
+                // this; // ovo je da se odnosi na specifican element
+                //i sad ovde kriramo po jedan Waypoint za svaki item (ima ih 4)
+                var currentItem = this;
+                new Waypoint({
+                    element: currentItem, // DOM element koji zelimo da posmatramo (watch) kada skrolujemo stranicu
+                    handler: function handler() {
+                        // zelimo na taj skrol do currentItem-a, da se doda css klasa kojom ce taj nas item/div postepeno postati vidljivi
+                        (0, _jquery2.default)(currentItem).addClass("reveal-item--is-visible");
+                    }, // sta zelimo da se dogodi kada se skroluje na taj element
+                    // offset: "85%"// ovo pusti video 046 klip pred kraj objasnjava zasto smo dodali offset, u stustini igraj se pa probaj sa i bez
+                    offset: that.offsetPercentage // medjutim ovo this.offsetPercentage nece moci uspesno da pristupi this.offsetPercentage = offset; propertyju, to je jer u okviru ovog obj Waypoint js this keyw. vise ne pokazuje na gl objekat RevealOnScroll koji ima offsetPercebtage property, ovde ovo this pokazuje na ovaj Waypoint individualan obj koji je kreiran, pa zato treba da pristupimo gl objektu u okviru ovog this.offsetPercentage kontexta, i zato cemo gore, da napravimo promenljivu that koja ce biti jednaka this, jer onda ce preko that-a, ovaj this da pokazuje sta treba
+                }); // dakle ovaj kod ce se izvrsiti 4x, iliti za svaki item u itemsToReveal po jednom, i onda kada se dodje do element: propertyja mi zelimo da damo do znanja koji element je na redu u loop-u, tj kroz koji se u datom momentu loopujemo, i u okviru jquery each() this keywoard ukazuje na trenutni element kroz koji se loopuje, tj trenutni DOM element, ali bezobzira, ne mozemo za elemenent staviti this, jer taj deo koda ( new Waypoint({element: x, handler: x}); ) kreira novi objekat, a u okviru constructor f-je (u new Waypoint()), this ce vratiti taj objekat. Ali izvan tog konstruktora tj new Waypoint-a, ovaj odmah iznad this i ukazuje na DOM objekat koji zelimo
+            });
+        }
+    }]);
+
+    return RevealOnScroll;
+}();
+
+exports.default = RevealOnScroll;
+
+/***/ }),
 /* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -11291,11 +11270,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(2);
+var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
-var _noframework = __webpack_require__(4);
+var _noframework = __webpack_require__(1);
 
 var _noframework2 = _interopRequireDefault(_noframework);
 
@@ -11394,11 +11373,17 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_
 (function(factory) {
   if (true) {
     // AMD. Register as an anonymous module.
-    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(2)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+    !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(0)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
 				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
 				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
 				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
-  } else {}
+  } else if (typeof module === 'object' && module.exports) {
+    // CommonJS
+    factory(require('jquery'));
+  } else {
+    // Browser globals
+    factory(jQuery);
+  }
 }(function($) {
 
   var version = '2.2.0';
@@ -11754,7 +11739,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _jquery = __webpack_require__(2);
+var _jquery = __webpack_require__(0);
 
 var _jquery2 = _interopRequireDefault(_jquery);
 
