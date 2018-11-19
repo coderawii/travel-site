@@ -6,11 +6,42 @@
     bottom: 0;
     left: 0;
     right: 0;
+    opacity: 0; /* da bi po difoltu, kad se stranica ucita, ovo bilo nevidljivo, dakle tu, ali nevidljivo, medjutim, to je valjda i zbog vog z-indexa jer je po difoltu ovaj div prvi, u odnosu na sve ostale na stranici, i mogli bi slucajno kliknuti na linkove tj ikoninice (koje su tu, al se ne vide). Iz onda mozemo dodati visibility: hidden; i problem resen */
+    visibility: hidden;
+    transform: scale(1.2);
+    transition: all .3s ease-out;
+
+    &--is-visible {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1);
+    }
+
+    &__inner {
+        position: absolute;
+        width: 100%;
+        top: 50%;
+        transform: translateY(-50%);
+    }
 
     &__description {
         text-align: center;
         font-size: 1.3rem;
         font-weight: 300;
         line-height: 1.65;
+    }
+
+    &__close {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        font-size: 2rem;
+        transform: scaleX(1.2);
+        transform-origin: 100% 0; /* pojma nemam sto je ovo bolje nego da recimo right promenimo */
+        cursor: pointer;
+
+        &:hover {
+            color: $mainOrange;
+        }
     }
 }
