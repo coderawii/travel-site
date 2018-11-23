@@ -41,7 +41,7 @@
            transform: translatX(0);
 
            .site-header--dark & { /* selektuje logo, tj targetuje logo samo kad je --dark koriscen */
-               transform: scale(.57); /* da se smanji malo prilikom onog skrola u js-u */ 
+               transform: scale(.56); /* da se smanji malo prilikom onog skrola u js-u */ 
            }
        }
    }

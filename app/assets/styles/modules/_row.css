@@ -101,11 +101,10 @@
             width: 63%;
         }
     }
-
     /* Pocinje Equal Height pravila  */
-   &--equal-height-at-medium {
+   .flexbox &--equal-height-at-medium { /* dodajemo .flexbox da bi preko modernizr.js flexbox bio podrzan u svim browserima */
        @mixin atMedium {
-           display: flex;
+           display: flex; 
        }
 
        & > div {
@@ -114,7 +113,7 @@
        }
    }
 
-   &--equal-height-at-large {
+   .flexbox &--equal-height-at-large { /* dodajemo .flexbox da bi preko modernizr.js flexbox bio podrzan u svim browserima */
     @mixin atLarge {
         display: flex;
     }

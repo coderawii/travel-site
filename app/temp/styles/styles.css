@@ -557,6 +557,14 @@ a {
     }
     }
 
+.flexbox .example-el {
+    padding: 10px;
+}
+
+.cssanimations .some-other-el {
+    margin: 10px;
+}
+
 .btn {
     background-color: #2f5572;
     color: #fff;
@@ -855,32 +863,36 @@ a {
 
 /* Pocinje Equal Height pravila  */
 
+/* dodajemo .flexbox da bi preko modernizr.js flexbox bio podrzan u svim browserima */
+
 @media (min-width: 800px) {
 
-.row--equal-height-at-medium {
+.flexbox .row--equal-height-at-medium {
            display: -webkit-box;
            display: -ms-flexbox;
            display: flex
    }
     }
 
-.row--equal-height-at-medium > div {
+.flexbox .row--equal-height-at-medium > div {
            float: none;
            display: -webkit-box;
            display: -ms-flexbox;
            display: flex;
        }
 
+/* dodajemo .flexbox da bi preko modernizr.js flexbox bio podrzan u svim browserima */
+
 @media (min-width: 1010px) {
 
-.row--equal-height-at-large {
+.flexbox .row--equal-height-at-large {
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex
 }
     }
 
-.row--equal-height-at-large > div {
+.flexbox .row--equal-height-at-large > div {
         float: none;
         display: -webkit-box;
         display: -ms-flexbox;
@@ -1048,6 +1060,12 @@ UMESTO TOGA EDITUJ gulp/templates/sprite */
             background-image: url('/assets/images/sprites/sprite-69f19c2e.svg');
         }
 
+/* za browsere koji ne poderzavaju svg, ali ovo meni vaaljda ne radi jer mi ne radi ni gulp-svg2png itd */
+
+.no-svg .icon {
+            background-image: url('/assets/images/sprites/sprite-69f19c2e.png');
+        }
+
 .icon--clear-view-escapes {
         width:142.4px;
         height:59.53px;
@@ -1203,8 +1221,8 @@ UMESTO TOGA EDITUJ gulp/templates/sprite */
    }
 
            .site-header--dark .site-header__logo { /* selektuje logo, tj targetuje logo samo kad je --dark koriscen */
-               -webkit-transform: scale(.57);
-                       transform: scale(.57); /* da se smanji malo prilikom onog skrola u js-u */ 
+               -webkit-transform: scale(.56);
+                       transform: scale(.56); /* da se smanji malo prilikom onog skrola u js-u */ 
            }
     }
 
