@@ -1,3 +1,4 @@
+import '../../temp/scripts/modernizr';
 import 'picturefill';
 
 // kada su neki packages u pitanju onda je bolje da se napravi poseban js file za njihov import, a ne u recimo App.js, iu zato naapravismo Vendor.js

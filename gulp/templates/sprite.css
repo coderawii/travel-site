@@ -7,6 +7,11 @@ UMESTO TOGA EDITUJ gulp/templates/sprite */
             /* background-image: url('/temp/sprite/css/{{{sprite}}}'); ovo je pre taska copySpriteGraphic kojim premestamo svg ikonica u image folder u assets. I sada treba da promenimo sprites.js config u deo gde upisujemo path za sprite */
             background-image: url('/assets/images/sprites/{{{sprite}}}');
         }
+
+        /* za browsere koji ne poderzavaju svg, ali ovo meni vaaljda ne radi jer mi ne radi ni gulp-svg2png itd */
+        .no-svg {
+            background-image: url('/assets/images/sprites/{{{sprite}}}');
+        }
     {{/first}}
     .icon--{{base}} {
         width:{{width.outer}}px;

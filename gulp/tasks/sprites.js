@@ -1,7 +1,8 @@
 var gulp = require('gulp'),
 svgSprite = require('gulp-svg-sprite'),
 rename = require('gulp-rename'),
-del = require('del');
+del = require('del'),
+svg2png = require('gulp-svg2png');
 
 var config = {
     mode: {
@@ -26,8 +27,14 @@ gulp.task('createSprite', ['beginClean'], function(){
         .pipe(gulp.dest('./app/temp/sprite/'));
 });
 
-gulp.task('copySpriteGraphic', ['createSprite'],  function() { // ovo ['createSrpite'] ubaceno ovde znaci da je on dependency ovom tasku, tj copySpriteGraphic zavisi od createSprite 
-    return gulp.src('./app/temp/sprite/css/**/*.svg')
+gulp.task('createPngCopy', ['createSprite'], function(){
+    return gulp.src('./app/temp/sprite/css/*.svg')
+        .pipe(svg2png())
+        .pipe(gulp.dest('./app/temp/sprite/css'));
+});
+
+gulp.task('copySpriteGraphic', ['createPngCopy'],  function() { // ovo ['createSrpite'] ubaceno ovde znaci da je on dependency ovom tasku, tj copySpriteGraphic zavisi od createSprite 
+    return gulp.src('./app/temp/sprite/css/**/*.{svg, png}')
         .pipe(gulp.dest('./app/assets/images/sprites'));
 });
 
@@ -42,4 +49,4 @@ gulp.task('endClean', ['copySpriteGraphic', 'copySpriteCss'], function() {
 });
 
 // bilo bi idealno kada bi umesto ova 2 taska pokretali zapravo samo jedan koji sadrzi oba ova taska
-gulp.task('icons', ['beginClean', 'createSprite', 'copySpriteCss', 'copySpriteGraphic', 'endClean']); // dakle prvo ce da se izvrsava createSprite, i onda ce ovaj copySpriteCss da ceka sve dok se ovaj createSprite ne izvrsi
+gulp.task('icons', ['beginClean', 'createSprite','createPngCopy',  'copySpriteGraphic', 'copySpriteCss', 'endClean']); // dakle prvo ce da se izvrsava createSprite, i onda ce ovaj copySpriteCss da ceka sve dok se ovaj createSprite ne izvrsi

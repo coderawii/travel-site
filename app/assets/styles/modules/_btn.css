@@ -1,3 +1,11 @@
+.flexbox .example-el {
+    padding: 10px;
+}
+
+.cssanimations .some-other-el {
+    margin: 10px;
+}
+
 .btn {
     background-color: $mainBlue;
     color: #fff;
