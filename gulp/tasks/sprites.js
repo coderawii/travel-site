@@ -7,6 +7,13 @@ svg2png = require('gulp-svg2png');
 var config = {
     mode: {
         css: {
+            variables: {
+                replaceSvgWithPng: function(){
+                    return function(sprite, render){
+                        return render(sprite).split('.svg').join('.png');
+                    }
+                }
+            },
             sprite: 'sprite.svg', // ovim uklanjamo .css iz file imena za background-image: url('/temp/sprite/css/svg/sprite-69f19c2e.svg'); (dakle bilo je sprite.css-......)
             render: {
                 css: {
